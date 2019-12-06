@@ -1,0 +1,155 @@
+%programminggeneral.sty
+%Provide the packages and definitions for programming (C++, Python, HTML5, CSS3, JavaScript) classes
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{programminggeneral}[2019/11/12 Programming General]
+
+\RequirePackage{amsmath}
+\RequirePackage{graphicx}
+\graphicspath{{./pictures/}}
+\RequirePackage{multimedia}
+\RequirePackage{xcolor}
+\definecolor{lightgray}{rgb}{.9,.9,.9}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+\RequirePackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{positioning}
+\usetikzlibrary{calc}
+\RequirePackage{siunitx}
+\RequirePackage{csquotes}
+%\RequirePackage{enumitem}
+\RequirePackage{tabularx}
+\RequirePackage{tabulary}
+\RequirePackage{longtable}
+\RequirePackage{multicol}
+\RequirePackage{multirow}
+\RequirePackage{listings}
+\RequirePackage{lstautogobble}
+\RequirePackage{nameref}
+%\RequirePackage{hyperref}
+\RequirePackage{url}
+\RequirePackage{dirtree}
+%\RequirePackage{wasysym}
+%\RequirePackage{textcomp}
+\RequirePackage{pdflscape}
+
+%enable monospaced font with a bold option for keywords
+\renewcommand{\ttdefault}{pcr}
+
+
+\lstdefinelanguage{JavaScript}{
+	  keywords={break, case, catch, const, continue, debugger, default, delete, do, else, false, finally, for, function, if, in, instanceof, let, new, null, return, switch, this, throw, true, try, typeof, var, void, while, with},
+	  morecomment=[l]{//},
+	  morecomment=[s]{/*}{*/},
+	  morestring=[b]',
+	  morestring=[b]",
+	  morestring=[b]`,
+	  ndkeywords={class, export, boolean, throw, implements, import, this},
+	  keywordstyle=\color{blue}\bfseries,
+	  ndkeywordstyle=\color{darkgray}\bfseries,
+	  identifierstyle=\color{black},
+	  commentstyle=\color{purple}\ttfamily,
+	  stringstyle=\color{red}\ttfamily,
+	  sensitive=true
+	}
+
+%Defining language styles
+\lstdefinestyle{cppStyle}
+{
+	language = C++,
+	tabsize = 3,
+	postbreak = \mbox{\textcolor{red}{$\hookrightarrow$}\space},
+	breaklines = true,
+	breakatwhitespace = true,
+	basicstyle = \small\ttfamily,
+	numbers = left,
+	showspaces = false,
+}
+
+\lstdefinestyle{python}
+{
+	language = python,
+	tabsize = 3,
+	postbreak = \mbox{\textcolor{red}{$\hookrightarrow$}\space},
+	breaklines = true,
+	breakatwhitespace = true,
+	basicstyle = \ttfamily\footnotesize,
+	numbers = left,
+	frame = l,
+}
+
+\lstdefinestyle{html}
+{
+	language = html,
+	tabsize = 3,
+	postbreak = \mbox{\textcolor{red}{$\hookrightarrow$}\space},
+	breaklines = true,
+	breakatwhitespace = true,
+	basicstyle = \footnotesize\ttfamily,
+	numbers = left,
+	frame = l,
+}
+								
+%WORK IN PROGRESS! THIS NEEDS TO BE ADDED!
+\lstdefinestyle{css}
+{
+	language = html,
+	tabsize = 3,
+	postbreak = \mbox{\textcolor{red}{$\hookrightarrow$}\space},
+	breaklines = true,
+	breakatwhitespace = true,
+	basicstyle = \footnotesize\ttfamily,
+	numbers = left,
+	frame = l,
+}
+
+\lstdefinestyle{js}
+{
+	language = JavaScript,
+	tabsize = 3,
+	postbreak = \mbox{\textcolor{red}{$\hookrightarrow$}\space},
+	breaklines = true,
+	breakatwhitespace = true,
+	basicstyle = \footnotesize\ttfamily,
+	numbers = left,
+	frame = l,
+}
+
+\lstdefinestyle{output}
+{
+	language = {},
+	numbers = left,
+	frame = l,
+	postbreak = \mbox{\textcolor{green}{$\hookrightarrow$}\space},
+	breaklines = true,
+	breakatwhitespace = true,
+	basicstyle = \footnotesize\ttfamily
+}
+						
+					
+
+%Code command
+\newcommand{\code}[1]{\texttt{#1}}
+
+%for html tags
+\newcommand{\htmltag}[1]{\code{<#1>}}
+\newcommand{\emptyhtmltag}[1]{\code{<#1 />}}
+
+%UML diagram stuff
+\tikzset{
+	start/.style = {draw, circle, fill = black, inner sep = 0pt, minimum width = 6pt},
+	stop/.style = {draw, circle, fill = black, double = white, double distance = 4pt, minimum width = 6pt},
+	io/.style = {draw, trapezium, trapezium left angle = 120, trapezium right angle = 60, minimum width = 3cm},
+	processing/.style = {draw, rectangle, minimum width = 3cm},
+	decision/.style = {draw, diamond, minimum size = 2cm, text badly centered},
+	flow/.style = {thick, -latex},
+}
+
+
+%fix footnotes
+\renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+
+%emphasizing when we are talking about menus
+\newcommand{\menu}[1]{%
+	\fbox{#1}
+}

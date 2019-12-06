@@ -1,0 +1,197 @@
+%mathgeneral.sty
+%general packages, commands, \&c for math
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mathgeneral}[2019/05/31 Math General]
+
+\RequirePackage{paralist} %needs to be above enumitem
+\RequirePackage{enumitem}
+\RequirePackage[per-mode = symbol, load = prefixed, load = abbr]{siunitx}
+\DeclareSIUnit\litre{\liter} %so that it is shown using a large L
+\RequirePackage{wrapfig}
+\RequirePackage{cutwin}
+\RequirePackage{tabularx}
+\RequirePackage{tabulary}
+\RequirePackage{multirow}
+\RequirePackage{array}
+\RequirePackage{multicol}
+\RequirePackage{csquotes}
+\RequirePackage[hidelinks]{hyperref}
+\RequirePackage{graphicx}
+\graphicspath{{./pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg} %to fix the priority in that order
+\RequirePackage{varwidth}
+\RequirePackage{framed}
+\RequirePackage{multimedia}
+
+\RequirePackage{amsmath}
+\RequirePackage{amsfonts}
+\RequirePackage{amssymb}
+\RequirePackage{mathtools}
+\RequirePackage{mathrsfs}
+\RequirePackage{cancel}
+
+\RequirePackage{wasysym} %THIS IS AFTER AMSSYB SO THAT IT DOESN'T CAUSE A PACKAGE CONFLICT
+
+\RequirePackage{tikz}
+\usetikzlibrary{external}
+\tikzset{filled dot/.style={circle, draw, fill=black, inner sep=4pt}}
+\tikzset{hollow dot/.style={circle, draw, fill=white, inner sep=4pt}}
+
+\RequirePackage{pgfplots}
+\usepgfplotslibrary{fillbetween}
+\RequirePackage{pgfplotstable}
+\pgfplotsset{compat=newest}
+
+\RequirePackage{tkz-euclide}
+\usetkzobj{all}
+
+\RequirePackage{soul}
+
+%fix footnotes
+\renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+
+
+\RequirePackage{amsthm}
+
+
+
+
+%%%%%%%% Options
+%\DeclareOption{notheorems}{
+%%weird workaround for beamer - NOTE: DOESN'T ACTUALLY WORK!
+%\let\definition\relax
+%\let\theorem\relax
+%\let\example\relax
+%}
+
+%\DeclareOption{theorems}{
+%	%theorems
+%	\newtheorem*{definition}{Definition}
+%	\newtheorem*{exampleThm}{Example}
+%	\newtheorem*{practiceThm}{Practice}
+%	\newtheorem*{reviewThm}{Review}
+%	\newtheorem*{theorem}{Theorem}
+%
+%	%\newenvironment{example}
+%	%{
+%	%\begin{exampleThm}
+%	%}
+%	%{
+%	%\leavevmode \\
+%	%\rule{2cm}{1pt}
+%	%\end{exampleThm}
+%	%}
+%
+%	\newenvironment{example} %better one - allows wrapfig
+%	{
+%	\vspace{\baselineskip}
+%	\noindent\textbf{Example:}\itshape 
+%	}
+%	{
+%	\normalfont
+%	\leavevmode\newline\noindent\rule{2cm}{1pt}
+%	}
+%
+%	\newenvironment{practice}
+%	{
+%	\begin{practiceThm}
+%	}
+%	{
+%	\leavevmode \\
+%	\rule{2cm}{1pt}
+%	\end{practiceThm}
+%	}
+%
+%	\newenvironment{review}
+%	{
+%	\begin{reviewThm}
+%	}
+%	{
+%	\leavevmode \\
+%	\rule{2cm}{1pt}
+%	\end{reviewThm}
+%	}
+%}
+
+
+%%%%%%% Defaults
+\ProcessOptions\relax
+
+%fixing beamer - only define the theorems if beamer is not loaded
+\@ifclassloaded{beamer}
+{}
+{
+	%theorems
+	\newtheorem*{definition}{Definition}
+	\newtheorem*{exampleThm}{Example}
+	\newtheorem*{practiceThm}{Practice}
+	\newtheorem*{reviewThm}{Review}
+	\newtheorem*{theorem}{Theorem}
+
+	%\newenvironment{example}
+	%{
+	%\begin{exampleThm}
+	%}
+	%{
+	%\leavevmode \\
+	%\rule{2cm}{1pt}
+	%\end{exampleThm}
+	%}
+
+	\newenvironment{example} %better one - allows wrapfig
+	{
+	\vspace{\baselineskip}
+	\noindent\textbf{Example:}\itshape 
+	}
+	{
+	\normalfont
+	\leavevmode\newline\noindent\rule{2cm}{1pt}
+	}
+
+	\newenvironment{practice}
+	{
+	\begin{practiceThm}
+	}
+	{
+	\leavevmode \\
+	\rule{2cm}{1pt}
+	\end{practiceThm}
+	}
+
+	\newenvironment{review}
+	{
+	\begin{reviewThm}
+	}
+	{
+	\leavevmode \\
+	\rule{2cm}{1pt}
+	\end{reviewThm}
+	}
+}
+
+%commenting
+\providecommand{\comment}[1]{}
+
+%desmos command
+\newcommand{\desmos}
+{%
+	\href{https://student.desmos.com}{\textsc{desmos!}}
+}
+
+%choose and permute
+\newcommand{\nCr}[2]{\,_{#1}C_{#2}}
+\newcommand{\nPr}[2]{\,_{#1}P_{#2}}
+
+%fancy d (for dx and whatnot)
+
+\newcommand*{\dd}[1]{\mathop{}\!\mathrm{d}#1}
+\newcommand*{\diff}[2]{\frac{\dd{#1}}{\dd{#2}}}
+
+% = with H over it (for L'Hopital's Rule
+\newcommand*{\Heq}{\ensuremath{\overset{\kern2pt H}{=}}}
+
+%For typesetting ships
+\newcommand{\ship}[1]{\textit{#1}}
+
+%a variable box
+\newcommand{\varbox}{\fbox{???}}
