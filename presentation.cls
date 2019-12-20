@@ -1,6 +1,6 @@
 %presentation class for all classes
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{presentation}[2019/04/24 Presentations for various courses - different options for each]
+\ProvidesClass{presentation}[2019/12/19 Presentations for various courses - different options for each]
 
 \LoadClass[t, 
 mathserif,
@@ -84,6 +84,24 @@ hyperref = {hidelinks},
 	\AtBeginDocument{
 		\usetheme{metropolis}
 		\setbeamertemplate{navigation symbols}{}
+	}
+}
+
+\DeclareOption{math30}{%
+	\AtBeginDocument{
+		\usetheme{Singapore}
+		\renewcommand{\insertnavigation}[1]{} %to remove the sections
+		\setbeamertemplate{navigation symbols}{}
+		}
+		
+	\AtBeginSection{
+		\frame{
+			\begin{centering}
+				\begin{beamercolorbox}[sep=12pt, center]{part title}
+					\usebeamerfont{section title}\insertsection\par
+				\end{beamercolorbox}
+			\end{centering}
+		}
 	}
 }
 
