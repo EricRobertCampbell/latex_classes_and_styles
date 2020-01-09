@@ -29,6 +29,7 @@
 \RequirePackage{totcount} %to keep track of the total number of different kinds of questions
 \RequirePackage[utf8]{inputenc}
 \RequirePackage{booktabs}
+\RequirePackage{pdfpages}
 
 
 
