@@ -1,0 +1,32 @@
+\RequirePackage{expl3}
+\ProvidesExplPackage
+	{answersatend}
+	{2019/03/15}
+	{0.1}
+	{Answers at end}
+
+	%Solution from https://tex.stackexchange.com/questions/334894/answer-at-the-end-of-exam-document-nice-solution
+	%\ExplSyntaxOn
+
+	% Counters are not reset on \end{parts} so I add code to reset them
+	\tl_put_right:Nn \endparts { \setcounter{partno}{0} }
+	\tl_put_right:Nn \endsubparts { \setcounter{subpart}{0} }
+	\tl_put_right:Nn \endsubsubparts { \setcounter{subsubpart}{0} }
+
+	\seq_new:N \l_exam_endprint_seq
+	\seq_new:N \l_exam_endprint_labels_seq
+	\tl_new:N \l__exam_endprint_temp_tl
+
+	\RenewDocumentCommand \answer { +m } {
+	    \seq_gput_right:Nx \l_exam_endprint_labels_seq {\arabic{question}\alph{partno}\roman{subpart}\greeknum{subsubpart}} \seq_gput_right:Nn \l_exam_endprint_seq { #1 } 
+	}
+
+	\NewDocumentCommand \PrintAllAnswers { } {
+	    \seq_map_inline:Nn \l_exam_endprint_seq {
+		\seq_pop_left:NN \l_exam_endprint_labels_seq \l__exam_endprint_temp_tl
+		\renewcommand{\solutiontitle}{\noindent\textbf{Solution~\l__exam_endprint_temp_tl}:\enspace}
+		\begin{solution} ##1 \end{solution}
+	    }
+	}
+
+	%\ExplSyntaxOff
