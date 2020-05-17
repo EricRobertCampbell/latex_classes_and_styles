@@ -119,7 +119,7 @@
 \newcommand{\unit}{}
 \newcommand{\course}{}
 
-\unloadpackage{framed}
+%\unloadpackage{framed} deprecated since framed is no longer defined in the exam class
 
 \RequirePackage[margin = 1in, letterpaper]{geometry}
 
